@@ -470,18 +470,18 @@ impl Window {
     /// Disable macOS window shadows.
     ///
     /// This prevents rendering artifacts from showing up when the window is transparent.
-    #[cfg(target_os = "macos")]
-    pub fn set_has_shadow(&self, has_shadows: bool) {
-        let view = match self.raw_window_handle() {
-            RawWindowHandle::AppKit(handle) => {
-                assert!(MainThreadMarker::new().is_some());
-                unsafe { handle.ns_view.cast::<NSView>().as_ref() }
-            },
-            _ => return,
-        };
+    // #[cfg(target_os = "macos")]
+    // pub fn set_has_shadow(&self, has_shadows: bool) {
+    //     let view = match self.raw_window_handle() {
+    //         RawWindowHandle::AppKit(handle) => {
+    //             assert!(MainThreadMarker::new().is_some());
+    //             unsafe { handle.ns_view.cast::<NSView>().as_ref() }
+    //         },
+    //         _ => return,
+    //     };
 
-        view.window().unwrap().setHasShadow(has_shadows);
-    }
+    //     view.window().unwrap().setHasShadow(has_shadows);
+    // }
 
     /// Select tab at the given `index`.
     #[cfg(target_os = "macos")]
